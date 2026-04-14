@@ -6,25 +6,18 @@
 
 int main()
 {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
-
     int menu;
 
     do
     {
-        // Variáveis para serem usadas no loop while e do-while.
-
-        int torre = 1;
-        int rainha = 1;
-
         // Logo abaixo está o menu básico utilizando a estrutura switch.
 
         printf("\nEscolha qual peça você quer mover digitando o número equivalente a peça...\n");
         printf("\n1 - Bispo\n");
         printf("2 - Torre\n");
         printf("3 - Rainha\n");
-        printf("4 - Sair\n");
+        printf("4 - Cavalo\n");
+        printf("5 - Sair\n");
         printf("---> ");
         scanf("%i", &menu);
 
@@ -37,6 +30,7 @@ int main()
             }
             break;
         case 2:
+            int torre = 1; // Variável para ser usada no loop abaixo.
             while (torre <= 5)
             {
                 printf("Direita\n"); // Essa mensagem será exibida 5 vezes.
@@ -44,6 +38,7 @@ int main()
             }
             break;
         case 3:
+            int rainha = 1; // Variável para ser usada no loop abaixo.
             do
             {
                 printf("Esquerda\n"); // Essa mensagem será exibida 8 vezes.
@@ -51,6 +46,17 @@ int main()
             } while (rainha <= 8);
             break;
         case 4:
+            int movimentoDoCavalo = 1; // Variável que para ser usado no loop abaixo.
+            while (movimentoDoCavalo--)
+            { // O loop vai executar apenas uma vez, já que após execução ele será decrementado, tornando a varável em um booleano false.
+                for (int i = 1; i <= 2; i++)
+                {
+                    printf("Baixo\n"); // Essa mensagem será exibida 2 vezes.
+                }
+                printf("Esquerda\n"); // Essa mensagem será exibida 1 vezes.
+            }
+            break;
+        case 5:
             printf("Saindo...\n"); // Essa mensagem será exibida logo antes do loop ser finalizado.
             break;
         default:
@@ -58,11 +64,7 @@ int main()
             break;
         }
 
-    } while (menu != 4);
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    } while (menu != 5);
 
     // Nível Mestre - Funções Recursivas e Loops Aninhados
     // Sugestão: Substitua as movimentações das peças por funções recursivas.
