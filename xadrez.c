@@ -1,8 +1,54 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+void bispo(int casas) // Função recursiva para o movimento do bispo.
+{
+    if (casas > 0) // Se a variável casas for maior que 0 executará o bloco de código abaixo.
+    {
+        for (int i = 5; i >= 1; i--) // Loop para movimento vertical do bispo, será executado 5 vezes.
+        {
+            printf("Cima\n");
+            for (int i = 0; i < 1; i++) // Loop para movimento horizontal do bispo, será executado uma vez a cada iteração do loop externo.
+            {
+                printf("Direita\n");
+            }
+        }
+        bispo(casas - 1); // Ponto principal para a recursividade, executa a função novamente porém sempre decrementando o valor da variável casas, assim evitando um loop infinito.
+    }
+}
+
+void torre(int casas) // Função recursiva para o movimento da torre.
+{
+    if (casas > 0) // Se a variável casas for maior que 0 executará o bloco de código abaixo.
+    {
+        printf("Direita\n");
+        torre(casas - 1); // Recursividade que executa a função novamente fazendo o decremento da variável casa.
+    }
+}
+
+void rainha(int casas) // Função recursiva para o movimento da rainha.
+{
+    if (casas > 0) // Se a variável casas for maior que 0 executará o bloco de código abaixo.
+    {
+        printf("Esquerda\n");
+        rainha(casas - 1); // Recursividade que executa a função novamente fazendo o decremento da variável casa.
+    }
+}
+
+void cavalo(int casas) // Função recursiva para o movimento do cavalo.
+{
+    if (casas > 0) // Se a variável casas for maior que 0 executará o bloco de código abaixo.
+    {
+        for (int i = 0, j = 1; i < 2; i++, j--) // loops com variáveis multiplas onde i será icrementado até ser 2 e o j será decrementado até -1.
+        {
+            printf("Cima\n");
+            if (j == 0) // Após o primeiro print o valor de j será zero e o if vai ser executado, ou seja, o código vai imprimir Cima 2 vezes e depois Direita uma vez.
+            {
+                printf("Direita\n");
+            }
+        }
+        cavalo(casas - 1); // Recursividade que executa a função novamente fazendo o decremento da variável casa.
+    }
+}
 
 int main()
 {
@@ -24,37 +70,16 @@ int main()
         switch (menu)
         {
         case 1:
-            for (int bispo = 1; bispo <= 5; bispo++)
-            {
-                printf("Cima, Direita\n"); // Essa mensagem será exibida 5 vezes.
-            }
+            bispo(1); // Executa a função para movimento do bispo, passando o valor 1 para que a função recursiva seja executada apenas uma vez.
             break;
         case 2:
-            int torre = 1; // Variável para ser usada no loop abaixo.
-            while (torre <= 5)
-            {
-                printf("Direita\n"); // Essa mensagem será exibida 5 vezes.
-                torre++;
-            }
+            torre(5); // Executa a função de movimento da torre, passando o valor 5.
             break;
         case 3:
-            int rainha = 1; // Variável para ser usada no loop abaixo.
-            do
-            {
-                printf("Esquerda\n"); // Essa mensagem será exibida 8 vezes.
-                rainha++;
-            } while (rainha <= 8);
+            rainha(8); // Executa a função de movimento da rainha, passando o valor 8.
             break;
         case 4:
-            int movimentoDoCavalo = 1; // Variável que para ser usado no loop abaixo.
-            while (movimentoDoCavalo--)
-            { // O loop vai executar apenas uma vez, já que após execução ele será decrementado, tornando a varável em um booleano false.
-                for (int i = 1; i <= 2; i++)
-                {
-                    printf("Baixo\n"); // Essa mensagem será exibida 2 vezes.
-                }
-                printf("Esquerda\n"); // Essa mensagem será exibida 1 vezes.
-            }
+            cavalo(1); // Executa a função para movimento do cavalo, passando o valor 1 para que a função recursiva seja executada apenas uma vez.
             break;
         case 5:
             printf("Saindo...\n"); // Essa mensagem será exibida logo antes do loop ser finalizado.
@@ -65,13 +90,6 @@ int main()
         }
 
     } while (menu != 5);
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
 
     return 0;
 }
